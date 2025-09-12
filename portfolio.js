@@ -200,8 +200,7 @@ const Portfolio = () => {
           }, [
             React.createElement(Music, { 
               key: 'music-icon',
-              className: 'mr-3',
-              size: 32 
+              className: 'mr-3'
             }),
             React.createElement('h3', { 
               key: 'spotify-title',
