@@ -1,39 +1,145 @@
-body .main {
-  display: flex;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body .main .title {
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: white;
+  color: #1a1a1a;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.blur-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.focus-area {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  pointer-events: none;
   display: flex;
-  flex-direction: column;
-  flex-grow: 8;
+  align-items: center;
   justify-content: center;
 }
 
-body .main .title .name {
-  color: black;
-  font-size: 40px;
+.focus-area::after {
+  content: '+';
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  position: absolute;
 }
 
-body .main .title .words-wrapper {
-  color: black;
-  font-size: 20px;
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-body .main .title .words-wrapper .words {
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title .name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.title .words-wrapper {
+  font-size: 1.5rem;
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+}
+
+.title .intro {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.words-wrapper .words {
   display: inline-grid;
   padding: 0 10px;
-  border-radius: 6px;
   color: var(--color, #000);
 }
-body .main .title .words-wrapper .words span {
+
+.words-wrapper .words span {
   grid-area: 1/1;
   display: none;
 }
-body .main .title .words-wrapper .words span.current {
+
+.words-wrapper .words span.current {
   display: block;
   animation-name: rotate-text-up;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #eaeaea;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-item {
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #1a1a1a;
+  background-color: #f5f5f5;
 }
 
 /* Animations */

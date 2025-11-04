@@ -1,15 +1,42 @@
-if (document.getElementById('my-work-link')) {
-  document.getElementById('my-work-link').addEventListener('click', () => {
-    document.getElementById('my-work-section').scrollIntoView({behavior: "smooth"})
-  })
-}
+// Mouse focus effect
+const focusArea = document.querySelector('.focus-area');
+const blurOverlay = document.querySelector('.blur-overlay');
 
-if (document.getElementById('my-resume-link')) {
-  document.getElementById('my-resume-link').addEventListener('click', () => {
-    document.getElementById('resume').scrollIntoView({behavior: "smooth"})
-  })
-}
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+  
+  // Update the position of the focus area
+  focusArea.style.left = `${x}px`;
+  focusArea.style.top = `${y}px`;
+  
+  // Create a square clear area in the blur overlay using CSS mask
+  const size = 200; // Size of the square
+  const maskStyle = `
+    linear-gradient(to right,
+      black,
+      black ${x - size/2}px,
+      transparent ${x - size/2}px,
+      transparent ${x + size/2}px,
+      black ${x + size/2}px,
+      black
+    ),
+    linear-gradient(to bottom,
+      black,
+      black ${y - size/2}px,
+      transparent ${y - size/2}px,
+      transparent ${y + size/2}px,
+      black ${y + size/2}px,
+      black
+    )
+  `;
+  
+  blurOverlay.style.webkitMask = maskStyle;
+  blurOverlay.style.mask = maskStyle;
+  blurOverlay.style.mask = blurOverlay.style.webkitMask;
+});
 
+// Rotating text effect
 const wrapper = document.querySelector(".words");
 const CURRENT_CLASS = "current";
 setInterval(() => {
